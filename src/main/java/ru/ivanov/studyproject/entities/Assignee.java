@@ -8,6 +8,8 @@ public class Assignee {
 
     private String id;
 
+    private String relationId;
+
     private String firstName;
 
     private String lastName;
@@ -57,4 +59,11 @@ public class Assignee {
         this.id = id;
     }
 
+    public String getRelationId() {
+        return relationId;
+    }
+
+    public void setRelationId(String relationId) {
+        this.relationId = relationId;
+    }
 }

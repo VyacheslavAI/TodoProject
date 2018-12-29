@@ -9,6 +9,8 @@ public class Project {
 
     private String id;
 
+    private String relationId;
+
     private String description;
 
     private Date created;
@@ -62,4 +64,11 @@ public class Project {
         this.created = created;
     }
 
+    public String getRelationId() {
+        return relationId;
+    }
+
+    public void setRelationId(String relationId) {
+        this.relationId = relationId;
+    }
 }

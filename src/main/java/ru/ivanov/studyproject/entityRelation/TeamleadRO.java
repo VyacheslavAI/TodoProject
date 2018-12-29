@@ -6,8 +6,15 @@ import ru.ivanov.studyproject.entities.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TeamleadRO {
+
+    private String id;
+
+    public TeamleadRO() {
+        id = UUID.randomUUID().toString();
+    }
 
     private final List<Assignee> assignees = new ArrayList<>();
 

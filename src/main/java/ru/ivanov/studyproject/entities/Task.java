@@ -10,6 +10,8 @@ public class Task {
 
     private final String id;
 
+    private String relationId;
+
     private String description;
 
     private final Date created;
@@ -53,5 +55,13 @@ public class Task {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+    public String getRelationId() {
+        return relationId;
+    }
+
+    public void setRelationId(String relationId) {
+        this.relationId = relationId;
     }
 }

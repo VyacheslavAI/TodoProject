@@ -7,8 +7,11 @@ import ru.ivanov.studyproject.entities.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ProjectRO {
+
+    private String id;
 
     private final List<Assignee> assignees = new ArrayList<>();
 
@@ -17,6 +20,10 @@ public class ProjectRO {
     private ResponsiblePerson person;
 
     private final List<Task> tasks = new ArrayList<>();
+
+    public ProjectRO() {
+        id = UUID.randomUUID().toString();
+    }
 
     public List<Assignee> getAssignees() {
         return assignees;
@@ -34,11 +41,11 @@ public class ProjectRO {
         this.client = client;
     }
 
-    public ResponsiblePerson getPerson() {
+    public ResponsiblePerson getResponsiblePerson() {
         return person;
     }
 
-    public void setPerson(ResponsiblePerson person) {
+    public void setResponsiblePerson(ResponsiblePerson person) {
         this.person = person;
     }
 }

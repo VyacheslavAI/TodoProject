@@ -6,6 +6,8 @@ public class Client {
 
     private String id;
 
+    private String relationId;
+
     private String companyName;
 
     public Client() {
@@ -31,5 +33,13 @@ public class Client {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getRelationId() {
+        return relationId;
+    }
+
+    public void setRelationId(String relationId) {
+        this.relationId = relationId;
     }
 }

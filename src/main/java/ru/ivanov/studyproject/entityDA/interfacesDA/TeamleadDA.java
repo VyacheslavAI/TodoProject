@@ -1,4 +1,4 @@
-package ru.ivanov.studyproject.entityDA.interfaces;
+package ru.ivanov.studyproject.entityDA.interfacesDA;
 
 import ru.ivanov.studyproject.entities.Assignee;
 import ru.ivanov.studyproject.entities.Teamlead;

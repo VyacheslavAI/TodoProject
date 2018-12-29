@@ -6,14 +6,21 @@ import ru.ivanov.studyproject.entities.Teamlead;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class AssigneeRO {
+
+    private String id;
 
     private final List<Project> projects = new ArrayList<>();
 
     private final List<Task> tasks = new ArrayList<>();
 
     private Teamlead teamlead;
+
+    public AssigneeRO() {
+        id = UUID.randomUUID().toString();
+    }
 
     public List<Project> getProjects() {
         return projects;

@@ -1,5 +1,7 @@
 package ru.ivanov.studyproject.entities;
 
+import java.util.UUID;
+
 public enum ResponsiblePerson {
 
     Manager_one("manager_one"),
@@ -9,8 +11,13 @@ public enum ResponsiblePerson {
     Manager_three("manager_three");
 
     ResponsiblePerson(String position) {
+        id = UUID.randomUUID().toString();
         this.position = position;
     }
+
+    private String id;
+
+    private String relationId;
 
     private String position;
 
@@ -22,4 +29,19 @@ public enum ResponsiblePerson {
         this.position = position;
     }
 
+    public String getRelationId() {
+        return relationId;
+    }
+
+    public void setRelationId(String relationId) {
+        this.relationId = relationId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

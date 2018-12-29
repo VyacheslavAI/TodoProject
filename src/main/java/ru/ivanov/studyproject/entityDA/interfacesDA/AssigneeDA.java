@@ -1,4 +1,4 @@
-package ru.ivanov.studyproject.entityDA.interfaces;
+package ru.ivanov.studyproject.entityDA.interfacesDA;
 
 import ru.ivanov.studyproject.entities.Assignee;
 import ru.ivanov.studyproject.entities.Project;
@@ -17,5 +17,5 @@ public interface AssigneeDA {
 
     List<Assignee> getAssigneesByProject(Project project);
 
-    List<Assignee> getAssigneeByTask(Task task);
+    List<Assignee> getAssigneesByTask(Task task);
 }
