@@ -1,9 +1,9 @@
-package utils;
+package ru.ivanov.studyproject.utils;
 
-import entities.Assignee;
-import entities.Client;
-import entities.Project;
-import entities.Task;
+import ru.ivanov.studyproject.entities.Assignee;
+import ru.ivanov.studyproject.entities.Client;
+import ru.ivanov.studyproject.entities.Project;
+import ru.ivanov.studyproject.entities.Task;
 
 public class CheckObjectUtil {
 

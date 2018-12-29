@@ -1,12 +1,19 @@
-package entities;
+package ru.ivanov.studyproject.entities;
+
+import java.util.UUID;
 
 public class Client {
+
     private String id;
 
     private String companyName;
 
-    public Client(String id, String companyName) {
-        this.id = id;
+    public Client() {
+        id = UUID.randomUUID().toString();
+    }
+
+    public Client(String companyName) {
+        this();
         this.companyName = companyName;
     }
 
@@ -20,5 +27,9 @@ public class Client {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -1,4 +1,4 @@
-package utils;
+package ru.ivanov.studyproject.utils;
 
 //TODO:methods for input name and other types with validation
 

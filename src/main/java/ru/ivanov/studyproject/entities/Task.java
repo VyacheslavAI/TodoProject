@@ -1,12 +1,15 @@
-package entities;
+package ru.ivanov.studyproject.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 //TODO: initialize list
 
 public class Task {
+
     private final String id;
 
     private final Project project;
@@ -17,27 +20,31 @@ public class Task {
 
     private Date deadline;
 
-    private List<Assignee> assignees;
+    private List<Assignee> assignees = new ArrayList<>();
 
-    public Task(String id, Project project, String description) {
-        this.id = id;
+    public Task(Project project) {
+        id = UUID.randomUUID().toString();
         this.project = project;
-        this.description = description;
         created = new Date();
     }
 
-    public Task(String id, Project project, String description, Date deadline) {
-        this(id, project, description);
+    public Task(Project project, String description) {
+        this(project);
+        this.description = description;
+    }
+
+    public Task(Project project, String description, Date deadline) {
+        this(project, description);
         this.deadline = deadline;
     }
 
-    public Task(String id, Project project, String description, List<Assignee> assignees) {
-        this(id, project, description);
+    public Task(Project project, String description, List<Assignee> assignees) {
+        this(project, description);
         this.assignees = assignees;
     }
 
-    public Task(String id, Project project, String description, Date deadline, List<Assignee> assignees) {
-        this(id, project, description);
+    public Task(Project project, String description, Date deadline, List<Assignee> assignees) {
+        this(project, description);
         this.deadline = deadline;
         this.assignees = assignees;
     }

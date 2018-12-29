@@ -1,10 +1,13 @@
-package entities;
+package ru.ivanov.studyproject.entities;
 
 //TODO: set final values
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Assignee {
+
     private String id;
 
     private String firstName;
@@ -13,30 +16,30 @@ public class Assignee {
 
     private String fullName;
 
-    private TeamLead teamLead;
+    private Teamlead teamLead;
 
-    private List<Project> projects;
+    private List<Project> projects = new ArrayList<>();
 
-    private List<Task> tasks;
+    private List<Task> tasks = new ArrayList<>();
 
-    public Assignee(String id, String firstName, String lastName, TeamLead teamLead) {
-        this.id = id;
+    public Assignee() {
+        id = UUID.randomUUID().toString();
+    }
+
+    public Assignee(String firstName, String lastName, Teamlead teamLead) {
+        this();
         this.firstName = firstName;
         this.lastName = lastName;
         this.teamLead = teamLead;
     }
 
-    public Assignee(String id, String firstName, String lastName, TeamLead teamLead, List<Project> projects) {
-        this(id, firstName, lastName, teamLead);
+    public Assignee(String firstName, String lastName, Teamlead teamLead, List<Project> projects) {
+        this(firstName, lastName, teamLead);
         this.projects = projects;
     }
 
-    public Assignee(String id, String firstName, String lastName, TeamLead teamLead, List<Project> projects, List<Task> tasks) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.teamLead = teamLead;
-        this.projects = projects;
+    public Assignee(String firstName, String lastName, Teamlead teamLead, List<Project> projects, List<Task> tasks) {
+        this(firstName, lastName, teamLead, projects);
         this.tasks = tasks;
     }
 
@@ -56,7 +59,7 @@ public class Assignee {
         return fullName;
     }
 
-    public TeamLead getTeamLead() {
+    public Teamlead getTeamLead() {
         return teamLead;
     }
 
@@ -80,7 +83,19 @@ public class Assignee {
         this.fullName = fullName;
     }
 
-    public void setTeamLead(TeamLead teamLead) {
+    public void setTeamLead(Teamlead teamLead) {
         this.teamLead = teamLead;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
