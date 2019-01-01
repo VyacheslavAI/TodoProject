@@ -1,4 +1,4 @@
-package ru.ivanov.studyproject.entityDA.interfacesDA;
+package ru.ivanov.studyproject.dao.interfaces;
 
 import ru.ivanov.studyproject.entities.Assignee;
 import ru.ivanov.studyproject.entities.Project;

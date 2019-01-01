@@ -2,13 +2,12 @@ package ru.ivanov.studyproject.entities;
 
 //TODO: set final values
 
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Assignee {
 
     private String id;
-
-    private String relationId;
 
     private String firstName;
 
@@ -16,12 +15,21 @@ public class Assignee {
 
     private String fullName;
 
+    private final List<Project> projects = new ArrayList<>();
+
+    private final List<Task> tasks = new ArrayList<>();
+
+    private final List<Teamlead> teamlead = new ArrayList<>();
+
     public Assignee() {
-        id = UUID.randomUUID().toString();
+        id = "0";
+        firstName = "noname";
+        lastName = "noname";
+        fullName = "noname";
     }
 
     public Assignee(String firstName, String lastName) {
-        this();
+        id = "0";
         this.firstName = firstName;
         this.lastName = lastName;
         fullName = String.format("%s %s", firstName, lastName);
@@ -53,17 +61,5 @@ public class Assignee {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getRelationId() {
-        return relationId;
-    }
-
-    public void setRelationId(String relationId) {
-        this.relationId = relationId;
     }
 }

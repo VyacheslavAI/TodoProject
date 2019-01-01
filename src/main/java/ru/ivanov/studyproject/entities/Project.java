@@ -1,7 +1,8 @@
 package ru.ivanov.studyproject.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 //TODO: initialize list
 
@@ -9,26 +10,34 @@ public class Project {
 
     private String id;
 
-    private String relationId;
-
     private String description;
 
     private Date created;
 
     private Date deadline;
 
+    private final List<Assignee> assignees = new ArrayList<>();
+
+    private final List<Task> tasks = new ArrayList<>();
+
     public Project() {
-        id = UUID.randomUUID().toString();
+        id = "0";
+        description = "no description";
         created = new Date();
+        deadline = new Date(92461953242369L);
     }
 
     public Project(String description) {
-        this();
+        id = "0";
         this.description = description;
+        created = new Date();
+        deadline = new Date(92461953242369L);
     }
 
     public Project(String description, Date deadline) {
-        this(description);
+        id = "0";
+        this.description = description;
+        created = new Date();
         this.deadline = deadline;
     }
 
@@ -56,19 +65,4 @@ public class Project {
         this.deadline = deadline;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public String getRelationId() {
-        return relationId;
-    }
-
-    public void setRelationId(String relationId) {
-        this.relationId = relationId;
-    }
 }

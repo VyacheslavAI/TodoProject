@@ -1,21 +1,23 @@
 package ru.ivanov.studyproject.entities;
 
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Client {
 
     private String id;
 
-    private String relationId;
-
     private String companyName;
 
+    private final List<Project> projects = new ArrayList<>();
+
     public Client() {
-        id = UUID.randomUUID().toString();
+        id = "0";
+        companyName = "anonymous client";
     }
 
     public Client(String companyName) {
-        this();
+        id = "0";
         this.companyName = companyName;
     }
 
@@ -31,15 +33,7 @@ public class Client {
         this.companyName = companyName;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getRelationId() {
-        return relationId;
-    }
-
-    public void setRelationId(String relationId) {
-        this.relationId = relationId;
+    public List<Project> getProjects() {
+        return projects;
     }
 }
