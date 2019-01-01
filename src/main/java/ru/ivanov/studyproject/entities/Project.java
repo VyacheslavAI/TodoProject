@@ -10,6 +10,8 @@ public class Project {
 
     private String id;
 
+    private String name;
+
     private String description;
 
     private Date created;
@@ -22,20 +24,23 @@ public class Project {
 
     public Project() {
         id = "0";
+        name = "no name";
         description = "no description";
         created = new Date();
         deadline = new Date(92461953242369L);
     }
 
-    public Project(String description) {
+    public Project(String name, String description) {
         id = "0";
+        this.name = name;
         this.description = description;
         created = new Date();
         deadline = new Date(92461953242369L);
     }
 
-    public Project(String description, Date deadline) {
+    public Project(String name, String description, Date deadline) {
         id = "0";
+        this.name = name;
         this.description = description;
         created = new Date();
         this.deadline = deadline;

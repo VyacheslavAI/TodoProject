@@ -11,5 +11,5 @@ public interface TeamleadDA {
 
     Teamlead getTeamleadByAssignee(Assignee assignee);
 
-    Teamlead getTeamleadByAssignees(List<Assignee> assignees);
+    List<Teamlead> getAllTeamleads();
 }

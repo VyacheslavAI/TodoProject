@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface ProjectDA {
 
-    Project getProjectById(String id);
-
     List<Project> getProjectsByClient(Client client);
 
     List<Project> getProjectsByCreated(Date created);
@@ -21,4 +19,6 @@ public interface ProjectDA {
     Project getProjectByTask(Task task);
 
     List<Project> getProjectsByAssignee(Assignee assignee);
+
+    List<Project> getAllProjects();
 }

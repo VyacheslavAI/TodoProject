@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface AssigneeDA {
 
-    Assignee getAssigneeById(String id);
-
     List<Assignee> getAssigneesByFullName(String fullName);
 
     List<Assignee> getAssigneesByTeamLead(Teamlead teamLead);
@@ -18,4 +16,6 @@ public interface AssigneeDA {
     List<Assignee> getAssigneesByProject(Project project);
 
     List<Assignee> getAssigneesByTask(Task task);
+
+    List<Assignee> getAllAssignees();
 }

@@ -27,6 +27,51 @@ public class DataSource<E> {
     private DataSource() {
     }
 
+    public List<PersistentEntity> getPersistentEntitiesListForClass(Class<E> eClass) {
+        return new ArrayList<>(repository.get(eClass.getSimpleName()).values());
+    }
+
+    public List<E> getAllEntityObjects(Class<E> eClass) {
+        List<E> entityObjects = new ArrayList<>();
+        List<PersistentEntity> persistentEntities = getPersistentEntitiesListForClass(eClass);
+
+        for (PersistentEntity persistentEntity : persistentEntities) {
+            entityObjects.add(persistentEntity.getEntity());
+        }
+
+        return entityObjects;
+    }
+
+    public List<E> searchEntitiesByRelations(List relationList, Class<E> persistentClass) throws NoSuchFieldException, IllegalAccessException {
+        List<PersistentEntity> persistentEntities = getPersistentEntitiesListForClass(persistentClass);
+        List<E> result = new ArrayList<>();
+
+        if (persistentEntities.isEmpty())
+            return result;
+
+        String persistentEntityType = persistentClass.getSimpleName();
+
+        for (Object relation : relationList) {
+            String relationEntityType = relation.getClass().getSimpleName();
+
+            if (!relationshipRatio.get(persistentEntityType).contains(relationEntityType))
+                continue;
+
+            String relationId = relation.getClass().getField("id").get(relation).toString();
+
+            for (PersistentEntity persistentEntity : persistentEntities) {
+                List relations = persistentEntity.getRelations().get(relationEntityType);
+                for (Object entityRelation : relations) {
+                    String entityRelationId = entityRelation.getClass().getField("id").get(entityRelation).toString();
+                    if (entityRelationId.equals(relationId))
+                        result.add(persistentEntity.getEntity());
+                }
+            }
+        }
+
+        return result;
+    }
+
     public E createOrUpdateEntity(E entity) throws ObjectIsNotPersistentException {
         try {
             String id = new String(entity.getClass().getField("id").get(entity).toString());
@@ -66,7 +111,7 @@ public class DataSource<E> {
         entityRepository.put(id, persistentEntity);
     }
 
-    public void updateEntity(String id, E entity, String className) throws NoSuchFieldException {
+    public void updateEntity(String id, E entity, String className) {
         PersistentEntity persistentEntity = repository.get(className).get(id);
         persistentEntity.setEntity(entity);
     }
@@ -128,6 +173,10 @@ public class DataSource<E> {
 
         void setEntity(E entity) {
             this.entity = entity;
+        }
+
+        public Map<String, List> getRelations() {
+            return relations;
         }
 
         public void putRelation(Object relation) {

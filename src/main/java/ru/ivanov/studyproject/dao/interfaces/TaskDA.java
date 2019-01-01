@@ -9,15 +9,13 @@ import java.util.List;
 
 public interface TaskDA {
 
-    Task getTaskById(String id);
+    List<Task> getTasksByProject(Project project);
 
-    Task getTaskByProject(Project project);
+    List<Task> getTaskByCreated(Date created);
 
-    Task getTaskByCreated(Date created);
+    List<Task> getTasksByDeadline(Date deadline);
 
-    Task getTaskByDeadline(Date deadline);
+    List<Task> getTasksByAssignee(Assignee assignee);
 
-    Task getTaskByAssignee(Assignee assignee);
-
-    Task getTaskByAssignees(List<Assignee> assigneeList);
+    List<Task> getAllTasks();
 }
