@@ -1,4 +1,4 @@
-package ru.ivanov.studyproject.dao.impl;
+package ru.ivanov.studyproject.dao.memoryImpl;
 
 import ru.ivanov.studyproject.dao.DataSource;
 import ru.ivanov.studyproject.dao.interfaces.AssigneeDA;
@@ -8,6 +8,7 @@ import ru.ivanov.studyproject.entities.Task;
 import ru.ivanov.studyproject.entities.Teamlead;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AssigneeDAO implements AssigneeDA {
@@ -29,21 +30,44 @@ public class AssigneeDAO implements AssigneeDA {
 
     @Override
     public List<Assignee> getAssigneesByTeamLead(Teamlead teamLead) {
+        try {
+            return dataSource.searchEntitiesByRelations(Arrays.asList(teamLead), Assignee.class);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
     @Override
     public List<Assignee> getAssigneesByProject(Project project) {
+        try {
+            return dataSource.searchEntitiesByRelations(Arrays.asList(project), Assignee.class);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
     @Override
     public List<Assignee> getAssigneesByTask(Task task) {
+        try {
+            return dataSource.searchEntitiesByRelations(Arrays.asList(task), Assignee.class);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public List<Assignee> getAllAssignees() {
-        return null;
+        return dataSource.getAllEntityObjects(Assignee.class);
     }
 }

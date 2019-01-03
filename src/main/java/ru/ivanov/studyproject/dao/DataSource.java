@@ -9,6 +9,15 @@ import java.util.*;
 
 //Problems:
 //1 clone persistent object
+//Rename all
+//Document class
+//Refactor exceptions
+//Remove null return from dao
+//Add generic for dataSource from dao
+//Make dataSource instance in dao final
+//Date created and deadline set hour minute seconds to zero
+//Refactor method "getByDate" to before date --- after date
+//Refactor cast to single object from list from dao
 
 public class DataSource<E> {
 
