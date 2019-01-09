@@ -4,6 +4,7 @@ import ru.ivanov.studyproject.dao.DataSource;
 import ru.ivanov.studyproject.dao.interfaces.ClientDA;
 import ru.ivanov.studyproject.entities.Client;
 import ru.ivanov.studyproject.entities.Project;
+import ru.ivanov.studyproject.exceptions.ObjectIsNotPersistentException;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ClientDAO implements ClientDA {
         List<Client> clients = dataSource.getAllEntityObjects(Client.class);
 
         for (Client client : clients) {
-            if (client.getCompanyName().equals(companyName)) {
+            if (client.getName().equals(companyName)) {
                 return client;
             }
         }
@@ -37,6 +38,16 @@ public class ClientDAO implements ClientDA {
         }
 
         return null;
+    }
+
+    @Override
+    public Client createOrUpdateClient(Client client) throws ObjectIsNotPersistentException {
+        return (Client) dataSource.createOrUpdateEntity(client);
+    }
+
+    @Override
+    public List<String> getRelationNames() {
+        return dataSource.getRelationships(Client.class);
     }
 
     @Override

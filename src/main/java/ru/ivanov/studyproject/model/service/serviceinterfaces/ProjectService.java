@@ -1,4 +1,4 @@
-package ru.ivanov.studyproject.dao.interfaces;
+package ru.ivanov.studyproject.model.service.serviceinterfaces;
 
 import ru.ivanov.studyproject.entities.*;
 import ru.ivanov.studyproject.exceptions.ObjectIsNotPersistentException;
@@ -6,11 +6,7 @@ import ru.ivanov.studyproject.exceptions.ObjectIsNotPersistentException;
 import java.util.Date;
 import java.util.List;
 
-public interface ProjectDA {
-
-    Project getProjectByTask(Task task);
-
-    Project createOrUpdateProject(Project project) throws ObjectIsNotPersistentException;
+public interface ProjectService {
 
     List<Project> getProjectsByClient(Client client);
 
@@ -18,9 +14,13 @@ public interface ProjectDA {
 
     List<Project> getProjectsByDeadline(Date deadline);
 
+    Project getProjectByTask(Task task);
+
     List<Project> getProjectsByAssignee(Assignee assignee);
 
     List<Project> getProjectsByTeamlead(Teamlead teamlead);
+
+    Project createOrUpdateProject(String id, String name, String description, Date created, Date deadline) throws ObjectIsNotPersistentException;
 
     List<String> getRelationNames();
 

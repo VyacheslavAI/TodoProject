@@ -1,4 +1,4 @@
-package ru.ivanov.studyproject.dao.interfaces;
+package ru.ivanov.studyproject.model.service.serviceinterfaces;
 
 import ru.ivanov.studyproject.entities.Assignee;
 import ru.ivanov.studyproject.entities.Project;
@@ -8,9 +8,9 @@ import ru.ivanov.studyproject.exceptions.ObjectIsNotPersistentException;
 
 import java.util.List;
 
-public interface AssigneeDA {
+public interface AssigneeService {
 
-    Assignee createOrUpdateAssignee(Assignee assignee) throws ObjectIsNotPersistentException;
+    Assignee createOrUpdateAssignee(String id, String name, String firstName, String lastName) throws ObjectIsNotPersistentException;
 
     List<Assignee> getAssigneesByFullName(String fullName);
 

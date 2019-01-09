@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//TODO: initialize list
-
 public class Project {
 
     private String id;
@@ -46,8 +44,20 @@ public class Project {
         this.deadline = deadline;
     }
 
+    public Project(String id, String name, String description, Date created, Date deadline) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.created = created;
+        this.deadline = deadline;
+    }
+
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescription() {

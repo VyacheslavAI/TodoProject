@@ -23,6 +23,11 @@ public class Teamlead {
         this.position = position;
     }
 
+    public Teamlead(String id, String position) {
+        this.id = id;
+        this.position = position;
+    }
+
     public String getPosition() {
         return position;
     }
@@ -33,5 +38,9 @@ public class Teamlead {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

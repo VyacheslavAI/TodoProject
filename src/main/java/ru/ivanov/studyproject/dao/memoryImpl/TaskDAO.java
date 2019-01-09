@@ -5,6 +5,7 @@ import ru.ivanov.studyproject.dao.interfaces.TaskDA;
 import ru.ivanov.studyproject.entities.Assignee;
 import ru.ivanov.studyproject.entities.Project;
 import ru.ivanov.studyproject.entities.Task;
+import ru.ivanov.studyproject.exceptions.ObjectIsNotPersistentException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +15,11 @@ import java.util.List;
 public class TaskDAO implements TaskDA {
 
     private final DataSource dataSource = DataSource.getDataSource();
+
+    @Override
+    public Task createOrUpdateTask(Task task) throws ObjectIsNotPersistentException {
+        return (Task) dataSource.createOrUpdateEntity(task);
+    }
 
     @Override
     public List<Task> getTasksByProject(Project project) {
@@ -67,6 +73,11 @@ public class TaskDAO implements TaskDA {
         }
 
         return null;
+    }
+
+    @Override
+    public List<String> getRelationNames() {
+        return dataSource.getRelationships(Task.class);
     }
 
     @Override

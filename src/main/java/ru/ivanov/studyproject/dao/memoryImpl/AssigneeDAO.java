@@ -6,6 +6,7 @@ import ru.ivanov.studyproject.entities.Assignee;
 import ru.ivanov.studyproject.entities.Project;
 import ru.ivanov.studyproject.entities.Task;
 import ru.ivanov.studyproject.entities.Teamlead;
+import ru.ivanov.studyproject.exceptions.ObjectIsNotPersistentException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public class AssigneeDAO implements AssigneeDA {
         List<Assignee> result = new ArrayList<>();
 
         for (Assignee assignee : assignees) {
-            if (assignee.getFullName().equals(fullName))
+            if (assignee.getName().equals(fullName))
                 result.add(assignee);
         }
 
@@ -64,6 +65,16 @@ public class AssigneeDAO implements AssigneeDA {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Assignee createOrUpdateAssignee(Assignee assignee) throws ObjectIsNotPersistentException {
+        return (Assignee) dataSource.createOrUpdateEntity(assignee);
+    }
+
+    @Override
+    public List<String> getRelationNames() {
+        return dataSource.getRelationships(Assignee.class);
     }
 
     @Override

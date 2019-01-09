@@ -9,11 +9,11 @@ public class Assignee {
 
     private String id;
 
+    private String name;
+
     private String firstName;
 
     private String lastName;
-
-    private String fullName;
 
     private final List<Project> projects = new ArrayList<>();
 
@@ -25,18 +25,29 @@ public class Assignee {
         id = "0";
         firstName = "noname";
         lastName = "noname";
-        fullName = "noname";
+        name = "noname";
     }
 
     public Assignee(String firstName, String lastName) {
         id = "0";
         this.firstName = firstName;
         this.lastName = lastName;
-        fullName = String.format("%s %s", firstName, lastName);
+        name = String.format("%s %s", firstName, lastName);
+    }
+
+    public Assignee(String id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        name = String.format("%s %s", firstName, lastName);
     }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -47,8 +58,8 @@ public class Assignee {
         return lastName;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
     public void setFirstName(String firstName) {
@@ -59,7 +70,7 @@ public class Assignee {
         this.lastName = lastName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -18,6 +18,18 @@ import java.util.*;
 //Date created and deadline set hour minute seconds to zero
 //Refactor method "getByDate" to before date --- after date
 //Refactor cast to single object from list from dao
+//Try to fix IDEA warnings
+//All selectSection starts with 0(zero number)
+//Only controller for all
+//Refactor works with entities in service or model by generics (like hibernate)
+//Add full information in list object(created, deadline etc
+//Use generics or Object class for selectProject (selectTask)
+//Refactor  plural or singular variable names
+//Extended base entity for except reflection
+//Refactor fullName for Assignees
+//Refactor name for Teamlead
+//Refactor name for Client
+//Refactor loadClientForMainObject
 
 public class DataSource<E> {
 
@@ -36,7 +48,12 @@ public class DataSource<E> {
     private DataSource() {
     }
 
-    public List<PersistentEntity> getPersistentEntitiesListForClass(Class<E> eClass) {
+    //May be deleted. Refactor
+    public List<String> getRelationships(Class<E> eClass) {
+        return new ArrayList<>(relationshipRatio.get(eClass.getSimpleName()));
+    }
+
+    private List<PersistentEntity> getPersistentEntitiesListForClass(Class<E> eClass) {
         return new ArrayList<>(repository.get(eClass.getSimpleName()).values());
     }
 
@@ -83,7 +100,7 @@ public class DataSource<E> {
 
     public E createOrUpdateEntity(E entity) throws ObjectIsNotPersistentException {
         try {
-            String id = new String(entity.getClass().getField("id").get(entity).toString());
+            String id = entity.getClass().getMethod("getId").invoke(entity).toString();
             String className = entity.getClass().getSimpleName();
 
             if ("0".equals(id))
@@ -93,14 +110,15 @@ public class DataSource<E> {
 
             return entity;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getClass().getSimpleName());
             throw new ObjectIsNotPersistentException("Object is not persistent");
         }
+
     }
 
     public void createNewEntity(E entity, String className) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        boolean entityRepositoryExists = repository.containsKey(className);
-
-        if (!entityRepositoryExists) {
+        if (!repository.containsKey(className)) {
             repository.put(className, new HashMap<String, PersistentEntity>());
         }
 
@@ -151,10 +169,6 @@ public class DataSource<E> {
         }
     }
 
-//    public E cloneEntity(E entity) {
-//
-//    }
-
     private class PersistentEntity {
         private E entity;
         private final Map<String, List> relations;
@@ -171,7 +185,7 @@ public class DataSource<E> {
                     String typeName = field.getGenericType().getTypeName();
                     Set<String> linkNames = relationshipRatio.putIfAbsent(entity.getClass().getSimpleName(), new HashSet<>());
                     linkNames.add(typeName);
-                    relations.put(field.getGenericType().getTypeName(), new ArrayList<>());
+                    relations.put(typeName, new ArrayList<>());
                 }
             }
         }

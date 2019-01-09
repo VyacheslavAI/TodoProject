@@ -2,10 +2,8 @@ package ru.ivanov.studyproject.dao.memoryImpl;
 
 import ru.ivanov.studyproject.dao.DataSource;
 import ru.ivanov.studyproject.dao.interfaces.ProjectDA;
-import ru.ivanov.studyproject.entities.Assignee;
-import ru.ivanov.studyproject.entities.Client;
-import ru.ivanov.studyproject.entities.Project;
-import ru.ivanov.studyproject.entities.Task;
+import ru.ivanov.studyproject.entities.*;
+import ru.ivanov.studyproject.exceptions.ObjectIsNotPersistentException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -80,6 +78,29 @@ public class ProjectDAO implements ProjectDA {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Project> getProjectsByTeamlead(Teamlead teamlead) {
+        try {
+            return dataSource.searchEntitiesByRelations(Arrays.asList(teamlead), Teamlead.class);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public Project createOrUpdateProject(Project project) throws ObjectIsNotPersistentException {
+        return (Project) dataSource.createOrUpdateEntity(project);
+    }
+
+    @Override
+    public List<String> getRelationNames() {
+        return dataSource.getRelationships(Project.class);
     }
 
     @Override

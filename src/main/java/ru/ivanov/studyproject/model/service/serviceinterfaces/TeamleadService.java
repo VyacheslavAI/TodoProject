@@ -1,4 +1,4 @@
-package ru.ivanov.studyproject.dao.interfaces;
+package ru.ivanov.studyproject.model.service.serviceinterfaces;
 
 import ru.ivanov.studyproject.entities.Assignee;
 import ru.ivanov.studyproject.entities.Project;
@@ -7,7 +7,7 @@ import ru.ivanov.studyproject.exceptions.ObjectIsNotPersistentException;
 
 import java.util.List;
 
-public interface TeamleadDA {
+public interface TeamleadService {
 
     Teamlead getTeamleadByPosition(String position);
 
@@ -15,7 +15,7 @@ public interface TeamleadDA {
 
     Teamlead getTeamleadByProject(Project project);
 
-    Teamlead createOrUpdateTeamlead(Teamlead teamlead) throws ObjectIsNotPersistentException;
+    Teamlead createOrUpdateTeamlead(String id, String position) throws ObjectIsNotPersistentException;
 
     List<String> getRelationNames();
 

@@ -7,30 +7,39 @@ public class Client {
 
     private String id;
 
-    private String companyName;
+    private String name;
 
     private final List<Project> projects = new ArrayList<>();
 
     public Client() {
         id = "0";
-        companyName = "anonymous client";
+        name = "anonymous client";
     }
 
-    public Client(String companyName) {
+    public Client(String name) {
         id = "0";
-        this.companyName = companyName;
+        this.name = name;
+    }
+
+    public Client(String id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Project> getProjects() {
